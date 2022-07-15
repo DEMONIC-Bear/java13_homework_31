@@ -53,20 +53,20 @@ public class RestaurantOrders {
         return orders.stream()
                 .sorted(Comparator.comparing(Order::calculateTotal))
                 .limit(a)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     public static List<Order> getExpensive(List<Order> orders, int b) {
         return orders.stream()
                 .sorted(Comparator.comparing(Order::calculateTotal).reversed())
                 .limit(b)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     public static List<Order> getDeliveryList(List<Order> orders) {
         return orders.stream()
                 .filter(Order::isHomeDelivery)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     public static void printListAndMinMaxForDelivery(List<Order> orders) {
@@ -93,7 +93,7 @@ public class RestaurantOrders {
                 .filter(Order::isHomeDelivery)
                 .takeWhile(order -> order.calculateTotal() < maxOrderTotal(orders).calculateTotal())
                 .sorted(Comparator.comparing(Order::calculateTotal))
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     public static List<Order> moreThanMinTotalList(List<Order> orders) {
@@ -101,7 +101,7 @@ public class RestaurantOrders {
                 .filter(Order::isHomeDelivery)
                 .takeWhile(order -> order.calculateTotal() > minOrderTotal(orders).calculateTotal())
                 .sorted(Comparator.comparing(Order::calculateTotal))
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     public static Order maxOrderTotal(List<Order> orders) {
@@ -118,7 +118,7 @@ public class RestaurantOrders {
         return orders.stream()
                 .map(Order::getCustomer)
                 .map(Customer::getEmail)
-                .collect(Collectors.toCollection(TreeSet::new));
+                .collect(toCollection(TreeSet::new));
     }
 
     public static Map<Customer, List<Order>> getListOrdersByCustomerName(List<Order> orders) {
